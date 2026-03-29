@@ -18,7 +18,7 @@ export const OrderHistoryPage = ({ onNavigate }) => {
     if (!user) return;
     setLoading(true);
     const token = localStorage.getItem('token');
-    const response = await fetch(`${BASE_URL}/orders`, {
+    const response = await fetch(`${BASE_URL}/api/orders`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await response.json();
@@ -27,7 +27,7 @@ export const OrderHistoryPage = ({ onNavigate }) => {
     if (data.orders) {
       const ordersWithItems = await Promise.all(
         data.orders.map(async (order) => {
-          const itemsResponse = await fetch(`${BASE_URL}/orders/${order.id}`, {
+          const itemsResponse = await fetch(`${BASE_URL}/api/orders/${order.id}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           const itemsData = await itemsResponse.json();

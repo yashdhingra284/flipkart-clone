@@ -19,7 +19,7 @@ export const ProductDetailPage = ({ productId, onNavigate }) => {
 
   const loadProduct = async () => {
     setLoading(true);
-    const response = await fetch(`${BASE_URL}/products/${productId}`);
+    const response = await fetch(`${BASE_URL}/api/products/${productId}`);
     const data = await response.json();
     if (data.product) setProduct(data.product);
     setLoading(false);
@@ -28,7 +28,7 @@ export const ProductDetailPage = ({ productId, onNavigate }) => {
   const checkWishlist = async () => {
     if (!user) return;
     const token = localStorage.getItem('token');
-    const response = await fetch(`${BASE_URL}/wishlist`, {
+    const response = await fetch(`${BASE_URL}/api/wishlist`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await response.json();
@@ -46,14 +46,14 @@ export const ProductDetailPage = ({ productId, onNavigate }) => {
     }
     const token = localStorage.getItem('token');
     if (isInWishlist && wishlistItemId) {
-      await fetch(`${BASE_URL}/wishlist/${wishlistItemId}`, {
+      await fetch(`${BASE_URL}/api/wishlist/${wishlistItemId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
       setIsInWishlist(false);
       setWishlistItemId(null);
     } else {
-      const response = await fetch(`${BASE_URL}/wishlist`, {
+      const response = await fetch(`${BASE_URL}/api/wishlist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export const ProductDetailPage = ({ productId, onNavigate }) => {
       return;
     }
     const token = localStorage.getItem('token');
-    await fetch(`${BASE_URL}/cart`, {
+    await fetch(`${BASE_URL}/api/cart`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

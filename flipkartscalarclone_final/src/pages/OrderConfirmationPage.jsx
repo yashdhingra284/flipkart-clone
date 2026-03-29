@@ -14,7 +14,7 @@ export const OrderConfirmationPage = ({ orderId, onNavigate }) => {
   const loadOrder = async () => {
     setLoading(true);
     const token = localStorage.getItem('token');
-    const response = await fetch(`${BASE_URL}/orders/${orderId}`, {
+    const response = await fetch(`${BASE_URL}/api/orders/${orderId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await response.json();

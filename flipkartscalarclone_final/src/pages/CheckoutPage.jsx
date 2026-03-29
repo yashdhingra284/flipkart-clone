@@ -22,7 +22,7 @@ export const CheckoutPage = ({ onNavigate }) => {
     if (!user) return;
     setLoading(true);
     const token = localStorage.getItem('token');
-    const response = await fetch(`${BASE_URL}/cart`, {
+    const response = await fetch(`${BASE_URL}/api/cart`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await response.json();
@@ -39,7 +39,7 @@ export const CheckoutPage = ({ onNavigate }) => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${BASE_URL}/orders`, {
+      const response = await fetch(`${BASE_URL}/api/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

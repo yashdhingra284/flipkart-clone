@@ -31,7 +31,7 @@ function AppContent() {
   const updateCartCount = async () => {
     if (!user) return;
     const token = localStorage.getItem('token');
-    const response = await fetch(`${BASE_URL}/cart`, {
+    const response = await fetch(`${BASE_URL}/api/cart`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await response.json();
