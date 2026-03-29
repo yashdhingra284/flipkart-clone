@@ -8,6 +8,8 @@ import { CheckoutPage } from './pages/CheckoutPage';
 import { OrderConfirmationPage } from './pages/OrderConfirmationPage';
 import { WishlistPage } from './pages/WishlistPage';
 import { OrderHistoryPage } from './pages/OrderHistoryPage';
+import { BASE_URL } from "../config";
+
 
 const API_URL = 'https://flipkart-clone-11a9.onrender.com/api/...';
 
@@ -30,7 +32,7 @@ function AppContent() {
   const updateCartCount = async () => {
     if (!user) return;
     const token = localStorage.getItem('token');
-    const response = await fetch(`${API_URL}/cart`, {
+    const response = await fetch(`${BASE_URL}/cart`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await response.json();

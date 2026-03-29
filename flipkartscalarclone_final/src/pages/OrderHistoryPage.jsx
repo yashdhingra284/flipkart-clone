@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Package, ChevronRight } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-
+import { BASE_URL } from "../config";
 const API_URL = 'https://flipkart-clone-11a9.onrender.com/api/...';
 
 export const OrderHistoryPage = ({ onNavigate }) => {
@@ -18,7 +18,7 @@ export const OrderHistoryPage = ({ onNavigate }) => {
     if (!user) return;
     setLoading(true);
     const token = localStorage.getItem('token');
-    const response = await fetch(`${API_URL}/orders`, {
+    const response = await fetch(`${BASE_URL}/orders`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await response.json();
@@ -27,7 +27,7 @@ export const OrderHistoryPage = ({ onNavigate }) => {
     if (data.orders) {
       const ordersWithItems = await Promise.all(
         data.orders.map(async (order) => {
-          const itemsResponse = await fetch(`${API_URL}/orders/${order.id}`, {
+          const itemsResponse = await fetch(`${BASE_URL}/orders/${order.id}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           const itemsData = await itemsResponse.json();

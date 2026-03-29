@@ -3,8 +3,7 @@ import { Banner } from '../components/Home/Banner';
 import { CategoryNav } from '../components/Layout/CategoryNav';
 import { ProductCard } from '../components/Products/ProductCard';
 import { useAuth } from '../contexts/AuthContext';
-
-const API_URL = 'https://flipkart-clone-11a9.onrender.com/api/...';
+import { BASE_URL } from '../config';   // ✅ ADDED
 
 export const HomePage = ({ onNavigate, searchQuery }) => {
   const [products, setProducts] = useState([]);
@@ -25,7 +24,7 @@ export const HomePage = ({ onNavigate, searchQuery }) => {
 
   const loadProducts = async () => {
     setLoading(true);
-    const response = await fetch(`${API_URL}/products`);
+    const response = await fetch(`${BASE_URL}/api/products`);   // ✅ FIXED
     const data = await response.json();
     if (data.products) setProducts(data.products);
     setLoading(false);
@@ -34,7 +33,7 @@ export const HomePage = ({ onNavigate, searchQuery }) => {
   const loadWishlist = async () => {
     if (!user) return;
     const token = localStorage.getItem('token');
-    const response = await fetch(`${API_URL}/wishlist`, {
+    const response = await fetch(`${BASE_URL}/api/wishlist`, {   // ✅ FIXED
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await response.json();
@@ -68,13 +67,13 @@ export const HomePage = ({ onNavigate, searchQuery }) => {
     const isInWishlist = wishlist.has(productId);
 
     if (isInWishlist) {
-      const wishlistItems = await fetch(`${API_URL}/wishlist`, {
+      const wishlistItems = await fetch(`${BASE_URL}/api/wishlist`, {   // ✅ FIXED
         headers: { Authorization: `Bearer ${token}` }
       }).then(r => r.json());
 
       const item = wishlistItems.wishlist.find(i => i.product_id === productId);
       if (item) {
-        await fetch(`${API_URL}/wishlist/${item.id}`, {
+        await fetch(`${BASE_URL}/api/wishlist/${item.id}`, {   // ✅ FIXED
           method: 'DELETE',
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -85,7 +84,7 @@ export const HomePage = ({ onNavigate, searchQuery }) => {
         return newSet;
       });
     } else {
-      await fetch(`${API_URL}/wishlist`, {
+      await fetch(`${BASE_URL}/api/wishlist`, {   // ✅ FIXED
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

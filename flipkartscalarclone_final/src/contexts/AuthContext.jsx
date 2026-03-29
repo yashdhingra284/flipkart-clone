@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-
+import { BASE_URL } from "../config";
 const AuthContext = createContext(undefined);
 
 const API_URL = 'https://flipkart-clone-11a9.onrender.com/api/...';
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
 
   const autoLogin = async () => {
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch(`${BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signIn = async (email, password) => {
-    const response = await fetch(`${API_URL}/auth/login`, {
+    const response = await fetch(`${BASE_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signUp = async (email, password, name, phone) => {
-    const response = await fetch(`${API_URL}/auth/register`, {
+    const response = await fetch(`${BASE_URL}/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password, name, phone })

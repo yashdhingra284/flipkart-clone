@@ -17,7 +17,7 @@ export const CartPage = ({ onNavigate, onCartUpdate }) => {
     if (!user) return;
     setLoading(true);
     const token = localStorage.getItem('token');
-    const response = await fetch(`${API_URL}/cart`, {
+    const response = await fetch(`${BASE_URL}/cart`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await response.json();
@@ -28,7 +28,7 @@ export const CartPage = ({ onNavigate, onCartUpdate }) => {
   const updateQuantity = async (itemId, newQuantity) => {
     if (newQuantity < 1) return;
     const token = localStorage.getItem('token');
-    await fetch(`${API_URL}/cart/${itemId}`, {
+    await fetch(`${BASE_URL}/cart/${itemId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export const CartPage = ({ onNavigate, onCartUpdate }) => {
 
   const removeItem = async (itemId) => {
     const token = localStorage.getItem('token');
-    await fetch(`${API_URL}/cart/${itemId}`, {
+    await fetch(`${BASE_URL}/cart/${itemId}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` }
     });

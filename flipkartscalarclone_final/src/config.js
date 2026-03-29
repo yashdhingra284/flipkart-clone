@@ -1,0 +1,1 @@
+export const BASE_URL = "https://flipkart-clone-11a9.onrender.com";

@@ -1,6 +1,6 @@
 import { CheckCircle, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
-
+import { BASE_URL } from "../config";
 const API_URL = 'https://flipkart-clone-11a9.onrender.com/api/...';
 
 export const OrderConfirmationPage = ({ orderId, onNavigate }) => {
@@ -14,7 +14,7 @@ export const OrderConfirmationPage = ({ orderId, onNavigate }) => {
   const loadOrder = async () => {
     setLoading(true);
     const token = localStorage.getItem('token');
-    const response = await fetch(`${API_URL}/orders/${orderId}`, {
+    const response = await fetch(`${BASE_URL}/orders/${orderId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await response.json();
