@@ -116,7 +116,7 @@ const pool = require('../db');
 router.get('/categories/all', async (req, res) => {
   try {
     const categories = await pool.query(
-      'SELECT DISTINCT category FROM products ORDER BY category'
+      'SELECT DISTINCT category FROM public.products ORDER BY category'
     );
     res.status(200).json({ categories: categories.rows.map(r => r.category) });
   } catch (error) {
@@ -245,7 +245,7 @@ router.get('/', async (req, res) => {
       paramCount++;
     }
 
-    let query = 'SELECT * FROM products';
+    let query = 'SELECT * FROM public.products';
     if (conditions.length > 0) {
       query += ' WHERE ' + conditions.join(' AND ');
     }
@@ -263,7 +263,7 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const product = await pool.query(
-      'SELECT * FROM products WHERE id = $1', [id]
+      'SELECT * FROM public.products WHERE id = $1', [id]
     );
     if (product.rows.length === 0) {
       return res.status(404).json({ message: 'Product not found' });
