@@ -40,9 +40,10 @@ router.post('/register', async (req, res) => {
       user: newUser.rows[0]
     });
 
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
-  }
+  }catch (error) {
+  console.error("AUTH ERROR:", error);   // 👈 IMPORTANT
+  res.status(500).json({ message: error.message });
+}
 });
 
 router.post('/login', async (req, res) => {
@@ -82,9 +83,10 @@ router.post('/login', async (req, res) => {
       }
     });
 
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
-  }
+  }catch (error) {
+  console.error("AUTH ERROR:", error);   // 👈 IMPORTANT
+  res.status(500).json({ message: error.message });
+}
 });
 
 const authMiddleware = require('../middleware/auth');
@@ -99,8 +101,9 @@ router.get('/profile', authMiddleware, async (req, res) => {
     res.status(200).json({ user: user.rows[0] });
 
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
-  }
+  console.error("AUTH ERROR:", error);   // 👈 IMPORTANT
+  res.status(500).json({ message: error.message });
+}
 });
 
 module.exports = router;
