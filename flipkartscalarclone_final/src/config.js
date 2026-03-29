@@ -1,1 +1,1 @@
-export const BASE_URL = "https://flipkart-clone-11a9.onrender.com";
+export const BASE_URL = import.meta.env.VITE_API_URL;
