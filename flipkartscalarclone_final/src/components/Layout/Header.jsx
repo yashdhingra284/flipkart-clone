@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Search, ShoppingCart, Heart, User, ChevronDown, Menu } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import { LoginSignup } from '../Auth/LoginSignup';
+import { LoginSignup } from '../auth/LoginSignup';
 
 export const Header = ({ onNavigate, cartCount, searchQuery, onSearchChange }) => {
   const [showLogin, setShowLogin] = useState(false);
