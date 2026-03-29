@@ -1,7 +1,7 @@
 import { CheckCircle, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://flipkart-clone-11a9.onrender.com/api/...';
 
 export const OrderConfirmationPage = ({ orderId, onNavigate }) => {
   const [order, setOrder] = useState(null);

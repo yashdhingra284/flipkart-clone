@@ -4,7 +4,7 @@ import { CategoryNav } from '../components/Layout/CategoryNav';
 import { ProductCard } from '../components/Products/ProductCard';
 import { useAuth } from '../contexts/AuthContext';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://flipkart-clone-11a9.onrender.com/api/...';
 
 export const HomePage = ({ onNavigate, searchQuery }) => {
   const [products, setProducts] = useState([]);

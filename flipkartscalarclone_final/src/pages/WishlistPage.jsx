@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Heart, ShoppingCart, Trash2 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://flipkart-clone-11a9.onrender.com/api/...';
 
 export const WishlistPage = ({ onNavigate }) => {
   const [wishlistItems, setWishlistItems] = useState([]);
