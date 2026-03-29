@@ -10,7 +10,10 @@ const wishlistRoutes = require('./routes/wishlist');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://flipkart-clone-weld-nine.vercel.app",
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes
